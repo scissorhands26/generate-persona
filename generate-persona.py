@@ -6,7 +6,7 @@ def createPersona():
 	# name and email alias generation
 	firstName = names.get_first_name()
 	lastName = names.get_last_name()
-	name = firstName + lastName
+	name = firstName + " " + lastName
 	emailName = firstName + '.' + lastName
 	emailRandomization = random.randint(1000000,99999999)
 	email = emailName + '.' + str(emailRandomization) + '@protonmail.com'
@@ -20,19 +20,19 @@ def createPersona():
 	password = (''.join(password))
 
 	# prepare to write
-	global profile
 	profile = name + '\n' + password + '\n' + email + '\n'
+	return profile
 
-def createProfile():
-
+def createProfile(profile):
+	
 	# write to file
-	with open("persona", "x") as file:
-		data = file.write(profile)
+	with open("persona", "w") as file:
+		data = file.write(createPersona())
 		print(data)
 
 def main():
 	createPersona()
-	createProfile()
+	createProfile(createPersona)
 
 if __name__ == "__main__":
     main()
