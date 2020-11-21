@@ -6,8 +6,8 @@ class alias:
 	def __init__(self, fname, lname):
 		self.fname = fname
 		self.lname = lname
-		self.name = fname + ' ' + lname
-		self.email = fname + '.' + lname + '@protonmail.com'
+		self.name = fname + ' ' + lname + '\n'
+		self.email = fname + '.' + lname + '@protonmail.com\n'
 		self.password = createPassword()
 
 def createPassword():
@@ -16,24 +16,21 @@ def createPassword():
 	passwordlength = 24
 	for x in range (passwordlength):
 		password.append(random.choice(characters))
-	password = (''.join(password))
+	password = (''.join(password)) + '\n'
 	return password
 
 def createProfile():
-	
-	fname = names.get_first_name()
-	lname = names.get_last_name()
-	
-	profile = alias(fname, lname)
 
-	person = profile.name + '\n' + profile.email + '\n' + profile.password + '\n'
-	return person
+	profile = alias(names.get_first_name(), names.get_last_name())
+	return profile
 
-def createPersona(person):
+def createPersona(profile):
 
 	with open("persona", "w") as file:
-		data = file.write(createProfile())
-		print(data)
+		file.write(profile.name)
+		file.write(profile.email)
+		file.write(profile.password)
+
 
 def main():
 	createPersona(createProfile())
