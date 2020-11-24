@@ -31,7 +31,6 @@ def createPersona(profile):
 		file.write(profile.email)
 		file.write(profile.password)
 
-
 def main():
 	createPersona(createProfile())
 
